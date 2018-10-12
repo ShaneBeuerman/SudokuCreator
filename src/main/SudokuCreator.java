@@ -38,12 +38,12 @@ public class SudokuCreator {
         createSudoku(sudokuBoard, 10);
 
     }
-    /*
+    /**
         The method horizontal() checks to see if the sudoku board given has any doubles
         in its horizontal lines. It does so by seperating the board into nine different
         lines and checks each one. If even one of the lines has a double, the horizontal
         test fails and returns a false. If it passes every test, it returns a true.
-    */
+    **/
     public static boolean horizontal(int[] sudoku) {
         int[] line1 = {sudoku[0], sudoku[1], sudoku[2], sudoku[3], sudoku[4], sudoku[5], sudoku[6], sudoku[7], sudoku[8]};
         int[] line2 = {sudoku[9], sudoku[10], sudoku[11], sudoku[12], sudoku[13], sudoku[14], sudoku[15], sudoku[16], sudoku[17]};
@@ -91,12 +91,12 @@ public class SudokuCreator {
         return false;
     }
     
-        /*
-        The method vertical() checks to see if the sudoku board given has any doubles
-        in its vertical lines. It does so by seperating the board into nine different
+    /**
+        The method vertical() checks to see if the Sudoku board given has any doubles
+        in its vertical lines. It does so by separating the board into nine different
         lines and checks each one. If even one of the lines has a double, the vertical
         test fails and returns a false. If it passes every test, it returns a true.
-    */
+    **/
     public static boolean vertical(int[] sudoku) {
 
         int[] line1 = {sudoku[0], sudoku[9], sudoku[18], sudoku[27], sudoku[36], sudoku[45], sudoku[54], sudoku[63], sudoku[72]};
@@ -144,12 +144,12 @@ public class SudokuCreator {
         return false;
     }
 
-    /*
-        The method box() checks to see if the sudoku board given has any doubles
-        in its boxes. It does so by seperating the board into nine different
+    /**
+        The method box() checks to see if the Sudoku board given has any doubles
+        in its boxes. It does so by separating the board into nine different
         boxes and checks each one. If even one of the boxes has a double, the box
         test fails and returns a false. If it passes every test, it returns a true.
-    */
+    **/
     public static boolean box(int[] sudoku) {
         int[] line1 = {sudoku[0], sudoku[1], sudoku[2], sudoku[9], sudoku[10], sudoku[11], sudoku[18], sudoku[19], sudoku[20]};
         int[] line2 = {sudoku[3], sudoku[4], sudoku[5], sudoku[12], sudoku[13], sudoku[14], sudoku[21], sudoku[22], sudoku[23]};
@@ -196,10 +196,10 @@ public class SudokuCreator {
         return false;
     }
     
-    /*
+    /**
         Simple test to find doubles in a given array. If it finds a double, it
-        returnsfalse. If it doesn't find any double, it returns true.
-    */
+        returns false. If it doesn't find any double, it returns true.
+    **/
     public static boolean findDoubles(int[] solve) {
         for (int i = 0; i < solve.length; i++) {
             for (int j = 0; j < solve.length; j++) {
@@ -214,9 +214,9 @@ public class SudokuCreator {
         return true;
     }
     
-    /*
+    /**
         Simple method to find if an object is in an array
-    */
+    **/
     public static boolean findInside(int[] library, int findMe) {
         for (int l = 0; l < library.length; l++) {
             if (library[l] == findMe) {
@@ -226,9 +226,9 @@ public class SudokuCreator {
         return true;
     }
     
-    /*
-        Creates a GUI with 81 buttons and a textfield to input your answer
-    */
+    /**
+        Creates a GUI with 81 buttons and a text field to input your answer
+    **/
     public static void createSudoku(int[] board, int blanks) {
         JFrame frame = new JFrame("Sudoku");
         JButton[] buttons = new JButton[81];
