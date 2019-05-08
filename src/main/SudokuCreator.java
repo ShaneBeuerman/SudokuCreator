@@ -23,7 +23,8 @@ public class SudokuCreator {
     }
 
     /*
-    
+     The method boardRead() takes in a file and reads it to produce a 2d int
+     array, which will be the Sudoku board for this program.
      */
     public static void boardRead(File file) throws Exception {
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -47,7 +48,9 @@ public class SudokuCreator {
     }
 
     /*
-    
+     The method verifyBoard() checks if the given sudoku board can be
+     verified horizontally, vertically, and by boxes. If it can be, it
+     returns true. If not, it returns false.
      */
     public static boolean verifyBoard(int[][] board) {
         if (verticalVerify(board)
@@ -62,7 +65,10 @@ public class SudokuCreator {
     }
 
     /*
-    
+     The method horizontalVerify() checks to see if the sudoku board given has any duplicates
+     in its horizontal lines. It does so by adding each number from a horizontal line into a
+     list. It then checks if the list contains any of the numbers already added to it. If a 
+     duplicates is found, horizontalVerify returns false.
      */
     public static boolean horizontalVerify(int[][] board) {
         ArrayList<Integer> numbers = new ArrayList<Integer>();
@@ -79,7 +85,10 @@ public class SudokuCreator {
     }
 
     /*
-    
+     The method verticalVerify() checks to see if the Sudoku board given has any duplicates
+     in its vertical lines. It does so by adding each number from a vertical line into a list.
+     It then checks if the list contains any of the numbers already added to it. If a duplicate
+     is found, verticalVerify returns false.
      */
     public static boolean verticalVerify(int[][] board) {
         ArrayList<Integer> numbers = new ArrayList<Integer>();
@@ -96,7 +105,9 @@ public class SudokuCreator {
     }
 
     /*
-    
+     The method boxVerify() checks to see if the Sudoku board given has any duplicates
+     in its boxes. It works by taking the middle value of a Sudoku box and passes
+     it to individualBox(), which returns true or false if the box has duplicates.
      */
     public static boolean boxVerify(int[][] board) {
         ArrayList<Integer> numbers = new ArrayList<Integer>();
@@ -113,7 +124,11 @@ public class SudokuCreator {
     }
 
     /*
-    
+     The method individualBox() takes in the Sudoku board and the x and y value
+     of the Sudoku box. It adds the numbers from the surrounding coordinates in
+     the Sudoku box into a set. A set doesn't allow duplicates, so it checks
+     if the set is 9. If it has a size of 9, then it has no duplicates and
+     returns true.
      */
     public static boolean individualBox(int[][] board, int x, int y) {
         Set<Integer> numbers = new HashSet<Integer>();
@@ -136,7 +151,7 @@ public class SudokuCreator {
     }
 
     /*
-    
+     printBoard() prints a 2d int array.
      */
     public static void printBoard(int[][] board) {
         for (int i = 0; i < 9; i++) {
@@ -148,24 +163,24 @@ public class SudokuCreator {
 
     }
 
-
-
     /*
-    
+     rotateBoard() swaps the x and y values, creating a new board. If the 
+     original board is a verified Sudoku board, so will the new rotated
+     board.
      */
     public static int[][] rotateBoard(int[][] board) {
         int temp = 0;
         int[][] newBoard = new int[9][9];
-        for(int i = 0; i < 9; i++){
-            for(int j = 0; j < 9; j++){
-                newBoard[i][j] = board[j][i];          
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                newBoard[i][j] = board[j][i];
             }
         }
         return newBoard;
     }
 
-     /*
-      Creates a GUI with 81 buttons and a text field to input your answer
+    /*
+     Creates a GUI with 81 buttons and a text field to input your answer
      */
     public static void createBoard(int[][] board, int blanks) {
         JFrame frame = new JFrame("Sudoku");
@@ -224,5 +239,4 @@ public class SudokuCreator {
 
     }
 
- 
 }
