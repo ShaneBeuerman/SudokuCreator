@@ -11,8 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class SudokuCreator {
+public class main {
 
+    /*
+        Main function
+    */
     public static void main(String[] args) throws Exception {
         try {
             File file = new File(args[0]);
@@ -42,10 +45,20 @@ public class SudokuCreator {
             j++;
             i = 0;
         }
-        if (verifyBoard(board)) {
-            createBoard(board, 45);
+        if (verifyBoard(board)) {          
+            Scanner scan = new Scanner(System.in);
+            System.out.println("How many numbers will be marked blank?");
+            int n = -1;
+            while (n > 81 || n < 0) {
+                n = scan.nextInt();
+                if (n > 81 || n < 0) {
+                    System.out.println("Try again");
+                }
+            }
+            System.out.println("Thank you.");
+            createBoard(board, n);
         }
-    }
+    }    
 
     /*
      The method verifyBoard() checks if the given sudoku board can be
@@ -164,12 +177,102 @@ public class SudokuCreator {
     }
 
     /*
-     rotateBoard() swaps the x and y values, creating a new board. If the 
-     original board is a verified Sudoku board, so will the new rotated
+     turnLeft() takes a sudoku board
+     and rotates it counterclockwise.
+     */
+    public static int[][] turnLeft(int[][] board) {
+        int k;
+        int[][] newBoard = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            k = 8;
+            for (int j = 0; j < 9; j++) {
+                newBoard[j][i] = board[i][k];
+                k--;
+            }
+        }
+
+        return newBoard;
+    }
+    /*
+     turnRight takes a sudoku board and rotates
+     it clockwise.
+     */
+
+    public static int[][] turnRight(int[][] board) {
+        int k;
+        int[][] newBoard = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            k = 8;
+            for (int j = 0; j < 9; j++) {
+                newBoard[i][j] = board[k][i];
+                k--;
+            }
+        }
+
+        return newBoard;
+
+    }
+
+    /*
+     mirrorDiagonal() takes a sudoku board and 
+     mirrors the sudoku across a diagonal line.
+     */
+    public static int[][] mirrorDiagonal(int[][] board) {
+        int k;
+        int[][] newBoard = new int[9][9];
+        for (int i = 8; i >= 0; i--) {
+            k = 0;
+            for (int j = 0; j < 9; j++) {
+                newBoard[k][i] = board[i][j];
+                k++;
+            }
+        }
+
+        return newBoard;
+    }
+
+    /*
+     mirrorHorizontal() takes a sudoku board and 
+     mirrors the sudoku board across a horizontal
+     line.
+     */
+    public static int[][] mirrorHorizontal(int[][] board) {
+        int k;
+        int[][] newBoard = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            k = 0;
+            for (int j = 8; j >= 0; j--) {
+                newBoard[j][i] = board[i][k];
+                k++;
+            }
+        }
+
+        return newBoard;
+    }
+
+    /*
+     mirrorVertical() takes in a sudoku board and returns a mirror
+     image of it right back mirrored across a vertical line.
+     */
+    public static int[][] mirrorVertical(int[][] board) {
+        int k;
+        int[][] newBoard = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            k = 0;
+            for (int j = 8; j >= 0; j--) {
+                newBoard[i][j] = board[i][k];
+                k++;
+            }
+        }
+        return newBoard;
+    }
+
+    /*
+     swapBoard() swaps the x and y values, creating a new board. If the 
+     original board is a verified Sudoku board, so will the newly swapped
      board.
      */
-    public static int[][] rotateBoard(int[][] board) {
-        int temp = 0;
+    public static int[][] swapBoard(int[][] board) {
         int[][] newBoard = new int[9][9];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -191,7 +294,6 @@ public class SudokuCreator {
         JPanel textInput = new JPanel();
         JTextField txtInput = new JTextField("", 10);
         Random rand = new Random();
-
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 buttons[i][j] = new JButton("");
@@ -229,14 +331,11 @@ public class SudokuCreator {
                 buttons[x][y].setText("");
             }
         }
-
         frame.add(grid);
         textInput.add(txtInput);
         frame.add(textInput, BorderLayout.SOUTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
     }
-
 }
