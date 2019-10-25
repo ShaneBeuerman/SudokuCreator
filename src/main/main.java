@@ -15,13 +15,21 @@ public class main {
 
     /*
         Main function
+        A board must be provided as a .txt file. If none is
+        provided, "No Board Provided." will be displayed.
+        If the input is not a file, it will display "Not
+        acceptable input."
     */
     public static void main(String[] args) throws Exception {
-        try {
-            File file = new File(args[0]);
-            boardRead(file);
-        } catch (IOException e) {
-            System.out.print("Not acceptable input.");
+        if(args.length < 1){
+            System.out.println("No Board Provided.");
+        }else{
+            try {
+                File file = new File(args[0]);
+                boardRead(file);
+            } catch (IOException e) {
+                System.out.print("Not acceptable input.");
+            }
         }
     }
 
