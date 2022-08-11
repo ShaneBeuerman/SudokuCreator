@@ -92,7 +92,7 @@ public class main {
      duplicates is found, horizontalVerify returns false.
      */
     public static boolean horizontalVerify(int[][] board) {
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        ArrayList<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (numbers.contains(board[i][j])) {
@@ -112,7 +112,7 @@ public class main {
      is found, verticalVerify returns false.
      */
     public static boolean verticalVerify(int[][] board) {
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        ArrayList<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (numbers.contains(board[j][i])) {
@@ -131,7 +131,7 @@ public class main {
      it to individualBox(), which returns true or false if the box has duplicates.
      */
     public static boolean boxVerify(int[][] board) {
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        ArrayList<Integer> numbers = new ArrayList<>();
 
         for (int i = 1; i < 8; i = i + 3) {
             for (int j = 1; j < 8; j = j + 3) {
@@ -152,7 +152,7 @@ public class main {
      returns true.
      */
     public static boolean individualBox(int[][] board, int x, int y) {
-        Set<Integer> numbers = new HashSet<Integer>();
+        Set<Integer> numbers = new HashSet<>();
 
         numbers.add(board[x - 1][y + 1]);
         numbers.add(board[x][y + 1]);
@@ -164,11 +164,8 @@ public class main {
         numbers.add(board[x][y - 1]);
         numbers.add(board[x + 1][y - 1]);
 
-        if (numbers.size() != 9) {
-            return false;
-        }
-
-        return true;
+        return numbers.size() == 9;
+        
     }
 
     /*
@@ -333,7 +330,7 @@ public class main {
         for (int i = 0; i < blanks; i++) {
             x = rand.nextInt(9);
             y = rand.nextInt(9);
-            if (buttons[x][y].getText() == "") {
+            if (buttons[x][y].getText().equals("")) {
                 i--;
             } else {
                 buttons[x][y].setText("");
